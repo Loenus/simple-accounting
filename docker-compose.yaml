@@ -4,7 +4,7 @@ services:
 
   mongodb:
     image: mongo:5.0.2
-    container_name: simple-accounting-mongodb
+    container_name: $MONGODB_HOST
     restart: unless-stopped
     env_file: ./.env
     environment:
@@ -24,7 +24,7 @@ services:
     environment:
       - ME_CONFIG_MONGODB_ADMINUSERNAME=$MONGODB_USER
       - ME_CONFIG_MONGODB_ADMINPASSWORD=$MONGODB_PASSWORD
-      - ME_CONFIG_MONGODB_SERVER=simple-accounting-mongodb
+      - ME_CONFIG_MONGODB_SERVER=$MONGODB_HOST
       - ME_CONFIG_MONGODB_PORT=$MONGODB_DOCKER_PORT
     depends_on:
       - mongodb
@@ -45,7 +45,7 @@ services:
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     environment:
-      - DB_HOST=simple-accounting-mongodb
+      - DB_HOST=$MONGODB_HOST
       - DB_USER=$MONGODB_USER
       - DB_PASSWORD=$MONGODB_PASSWORD
       - DB_NAME=$MONGODB_DATABASE

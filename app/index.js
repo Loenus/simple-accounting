@@ -20,9 +20,11 @@ require("./routes/user.routes")(app);
 app.get('/', (req,res) => { // temp: for testing connection
   res.render('home')
 })
+app.get('/status_server', function (req, res) {
+	res.status(200).send('porta: ' + process.env.NODE_LOCAL_PORT);
+});
 
 const db = require("./models");
-console.log("db uri: " + db.url);
 db.mongoose
   .connect(db.url)
   .then(() => {
@@ -33,6 +35,8 @@ db.mongoose
     process.exit();
   });
 
-app.listen(process.env.NODE_DOCKER_PORT, () => {
-  console.log(`Listening to port http://localhost:${process.env.NODE_LOCAL_PORT}...`);
+var server = app.listen(process.env.NODE_DOCKER_PORT, () => {
+  console.log(`Listening to port http://localhost:${process.env.NODE_LOCAL_PORT} ...`);
 });
+
+module.exports = server;
