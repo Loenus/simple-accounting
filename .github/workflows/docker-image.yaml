@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - "v*.*.*"
+  workflow_dispatch:
 
 jobs:
   build:
@@ -23,7 +24,7 @@ jobs:
       id: meta
       uses: docker/metadata-action@v4
       with:
-        images: loenus/finanza-che-conta
+        images: loenus/simple-accounting
         tags: |
           type=semver,pattern={{version}}
           type=semver,pattern={{major}}.{{minor}}
