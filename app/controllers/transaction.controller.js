@@ -83,7 +83,7 @@ exports.upload = (req, res) => {
         //console.log('Dati del file Excel:', excelData);
         for (const row of excelData) {
           const transaction = new db.transaction({
-            Data: row[0],
+            Data: dateFormat(row[0]),
             Operazione: row[1],
             Dettagli: row[2],
             ContoOrCarta: row[3],
@@ -134,6 +134,14 @@ const saveOrUpdateDocument = async (data) => {
     console.log("già presente!")
   }
 };
+
+const dateFormat = (dateString) => {
+  const dateParts = dateString.split('.');
+  const day = parseInt(dateParts[0], 10);
+  const month = parseInt(dateParts[1], 10) - 1;
+  const year = parseInt(dateParts[2], 10);
+  const dateObject = new Date(year, month, day);
+}
 
 
 
