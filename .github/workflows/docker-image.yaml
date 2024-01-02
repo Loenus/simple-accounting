@@ -53,7 +53,7 @@ jobs:
         id: meta-mongo-express
         uses: docker/metadata-action@v4
         with:
-          images: loenus/simple-accounting
+          images: loenus/simple-accounting-mongo-express
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
@@ -83,7 +83,7 @@ jobs:
         id: meta-node
         uses: docker/metadata-action@v4
         with:
-          images: loenus/simple-accounting-3
+          images: loenus/simple-accounting-app
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
