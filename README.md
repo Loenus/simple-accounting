@@ -1,5 +1,36 @@
 ### Simple accounting
 
+
+##### env file 
+
+in the .env file:
+MONGODB_LOCAL_PORT
+MONGODB_DOCKER_PORT
+NODE_LOCAL_PORT
+NODE_DOCKER_PORT
+can be wathever port you want (not the same in docker/local env). app will be reachable at port NODE_LOCAL_PORT.
+
+MONGODB_USER
+MONGODB_PASSWORD
+credentials for mongodb istance
+
+MONGODB_HOST
+MONGODB_DATABASE
+are just names
+
+SECRET
+one way to generate is with a simple python script (python3.6+)
+
+```python
+import secrets
+length = 16
+generated_key = secrets.token_urlsafe(length)
+print(generated_key)
+```
+
+
+##### docker compose
+
 docker compose using docker hub (and not cloning this repo)
 
 ```yaml
